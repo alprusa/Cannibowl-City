@@ -114,7 +114,10 @@ function HealthHungerBar(action){
 		soundEfx["AvatarScream"].play();
 		terminated = true;
 		createSong("deathSong");
-		createScreens("GameOver");
+		$("#menuScreens").removeClass("hidden");
+		$("#gameOverButtons").removeClass("hidden");
+		$("#menuButtons").addClass("hidden");
+		$("#menuBackdrops").attr('src', 'img/GameOver.png');
 		remainingRestart--;
         
 		if(healthHunger["Hunger"].width <= 0 && hiding === false){
@@ -146,24 +149,6 @@ function HealthHungerBar(action){
 		makeText("RestartNum");
 		clearInterval(game_loop);
 		hungry = 0;
-		function mousePosHealth(event){
-        	var xHealth = event.clientX;
-        	var yHealth = event.clientY;
-        	
-            //go to main menu
-        	if(xHealth > 776 && xHealth < 950 && yHealth > 413 && yHealth < 488 && finished === false){
-        		location.reload(true);
-       	 	}
-            
-            //restart the level/game
-       	 	if(xHealth > 776 && xHealth < 950 && yHealth > 309 && yHealth < 384 && finished === false && restartCount <= 2){
-       	 		restartGame();
-       	 	}
-            
-		}
-		$("#canvas").on("click", function (event) {
-        	mousePosHealth(event);
-		});
 	}
 	
 	//when hungry or hunger is zero
@@ -224,6 +209,8 @@ function HealthHungerBar(action){
 }
 
 function restartGame(){
+	if(remainingRestart <= 0)  return;
+	
     walk = true;
     background.x = 0;
     foodCreated = true;
@@ -268,7 +255,7 @@ function restartGame(){
     avatar.x = -140;
     start = true;
     RemoveAllObjects();
-    RemoveScreens();
+    $("#menuScreens").addClass("hidden");
     
     if(healthHunger["Hunger"].width <= 0 && canniCollision === false && hungerDown === true && hiding === false)
         world.removeChild(textInfo["HungerDeath"]);

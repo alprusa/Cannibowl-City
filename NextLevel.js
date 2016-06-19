@@ -83,57 +83,51 @@ function NextLevel(){
 		healthHunger["Hunger"].remove(this);
 		healthHunger["Health"].remove(this);
 		createSong("menuMusic");
-		createScreens("Victory");
+		$("#menuScreens").removeClass("hidden");
+		$("#victoryButtons").removeClass("hidden");
+		$("#menuButtons").addClass("hidden");
+		$("#menuBackdrops").attr('src', 'img/Victory.png');
 		clearInterval(game_loop);
 		hungry = 0;
-		function mousePosEnd(event) {
-        	var xEnd = event.clientX;
-        	var yEnd = event.clientY;
-        	
-            //restart the level
-        	if(xEnd > 776 && xEnd < 950 && yEnd > 413 && yEnd < 488 && finished === true){
-        		location.reload(true);
-       	 	}
-            
-            //restart the level/game
-       	 	if(xEnd > 776 && xEnd < 950 && yEnd > 309 && yEnd < 384 && finished === true){
-				meatCreated = 0;
-				alive = true;
-				walk = true;
-				keepHealth = 140;
-				keepHunger = 140;
-				pushable = true;
-				meatPresent = false;
-				notePickUp = true;
-				sneak = false;
-				assim = true;
-				relocCanni = true;
-				backgroundStart = true;
-				cannibalSight.remove(this);
-				creeper.remove(this);
-				value = 0;
-				avatar.x = -140;
-				world.removeChild(nonGamePlayScreens["Victory"]);
-				noteCounter = 0;
-				area1 = true;
-				area2 = false;
-				area3 = false;
-				area4 = false;
-				area5 = false;
-				restart = true;
-				backgroundStart = false;
-				terminated = false;
-				level0 = true;
-				level1 = false;
-				level2 = false;
-				avatar.remove(this);
-				start = true;
-                RemoveAllObjects();
-				LoadContent();
-       	 	}
-		}
-		$("#canvas").on("click", function (event) {
-        	mousePosEnd(event);
-		});
 	}
+}
+
+function reloadToMenu(){
+	location.reload(true);
+}
+
+function restartGameLevel(){
+	meatCreated = 0;
+	alive = true;
+	walk = true;
+	keepHealth = 140;
+	keepHunger = 140;
+	pushable = true;
+	meatPresent = false;
+	notePickUp = true;
+	sneak = false;
+	assim = true;
+	relocCanni = true;
+	backgroundStart = true;
+	cannibalSight.remove(this);
+	creeper.remove(this);
+	value = 0;
+	avatar.x = -140;
+	$("#menuScreens").addClass("hidden");
+	noteCounter = 0;
+	area1 = true;
+	area2 = false;
+	area3 = false;
+	area4 = false;
+	area5 = false;
+	restart = true;
+	backgroundStart = false;
+	terminated = false;
+	level0 = true;
+	level1 = false;
+	level2 = false;
+	avatar.remove(this);
+	start = true;
+    RemoveAllObjects();
+	LoadContent();
 }

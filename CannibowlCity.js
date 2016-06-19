@@ -47,7 +47,6 @@ function LoadContent(action) {
 	healthHunger["Hunger"].width = keepHunger;
     
     if(level0 === true && restart === false){
-    	BeforeGame();
     	createSong("menuSong");
         createNotes();
     }
@@ -101,6 +100,7 @@ function CannibowlCity(){
 	
 	//Begin the game
 	if(start === true){
+		canvas.focus();
 		HealthHungerBar();
 		wKey();
 		Hide();

@@ -33,53 +33,37 @@ function RemoveScreens(){
 	}
 }
 
-//impliment and build feature screens
-function BeforeGame(){
-	if(StarSc === true){
-        createScreens("StartScreen");
-    }
-    
-	function mousePosStart(event) {
-        var x = event.clientX;
-        var y = event.clientY;
-        
-        //go back to menu screen
-        if(x > 494 && x < 605 && y > 493 && y < 529 && goBack === true && finished === false){
-        	goBack = false;
-        	stopClicks = 0;
-        	world.removeChild(nonGamePlayScreens["StartScreen"]);
-        	createScreens("StartScreen");
-        }
-        
-        //instruction screen
-        if(x > 744 && x < 957 && y > 340 && y < 403 && stopClicks === 0 && finished === false){
-        	goBack = true;
-        	StarSc = false;
-        	stopClicks = 1;
-        	world.removeChild(nonGamePlayScreens["Instruction"]);
-        	createScreens("Instruction");
-        }
-        
-        //credits screen
-        if(x > 744 && x < 957 && y > 426 && y < 491 && stopClicks === 0 && finished === false){
-        	goBack = true;
-        	StarSc = false;
-        	stopClicks = 1;
-        	world.removeChild(nonGamePlayScreens["Credits"]);
-        	createScreens("Credits");
-        }
-        
-        //start game
-        if(x > 720 && x < 980 && y > 234 && y < 319 && goBack === false && finished === false){
-            RemoveScreens();
-        	stopClicks = 1;
-        	start = true;
-        }
-	}
-    
-	$("#canvas").on("click", function (event) {
-        mousePosStart(event);
-	});
+function startGame(){
+	RemoveScreens();
+	stopClicks = 1;
+	start = true;
+	$("#menuScreens").addClass("hidden");
+}
+
+function creditsScreen(){
+	goBack = true;
+	StarSc = false;
+	stopClicks = 1;
+	$("#menuButtons").addClass("hidden");
+	$("#backButton").removeClass("hidden");
+	$("#menuBackdrops").attr('src', 'img/Credits.png');
+}
+
+function instructionScreen(){
+	goBack = true;
+	StarSc = false;
+	stopClicks = 1;
+	$("#menuButtons").addClass("hidden");
+	$("#backButton").removeClass("hidden");
+	$("#menuBackdrops").attr('src', 'img/Instruction.png');
+}
+
+function returnToMenu(){
+	goBack = false;
+	stopClicks = 0;
+	$("#menuButtons").removeClass("hidden");
+	$("#backButton").addClass("hidden");
+	$("#menuBackdrops").attr('src', 'img/StartScreen.png');
 }
 
 function gettingStartedRefresh(){
