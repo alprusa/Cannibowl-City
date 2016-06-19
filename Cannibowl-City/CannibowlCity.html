@@ -4,11 +4,38 @@
 		<meta charset="utf-8">
 		<title>CannibowlCity</title>
 		<link rel="stylesheet" type="text/css" href="CannibowlCity.css">
-		<link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	</head>
 	<body onload="LoadContent(0)">
         <div id="container">
-            <canvas id="canvas" width="800" height="550" style="border: solid black;"></canvas>
+        	<div id="menuScreens" class="img-overlay">
+				<img id="menuBackdrops" src="img/StartScreen.png" class="img-responsive" style="width:100%; position: absolute;">
+				
+				<!--Start menu buttons-->
+				<div id="menuButtons">
+					<img src="img/StartButton.png" class="img-responsive buttonsHv img-overlay" onclick="startGame();">
+					<img src="img/CreditsButton.png" class="img-responsive buttonsHv img-overlay" onclick="creditsScreen();">
+					<img src="img/InstructionButton.png" class="img-responsive buttonsHv img-overlay" onclick="instructionScreen();">
+				</div>
+				
+				<!--GameOver screen-->
+				<div id="gameOverButtons" class="hidden">
+					<p id="restartVal">Restart</p>
+					<p id="deathMessage">Death Note</p>
+					<img src="img/RestartButtonBlack.png" class="img-responsive buttonsHv img-overlay buttonsHvB" onclick="restartGame();">
+					<img src="img/MenuButtonBlack.png" class="img-responsive buttonsHv img-overlay buttonsHvB" onclick="reloadToMenu();">
+				</div>
+				
+				<div id="victoryButtons" class="hidden">
+					<img src="img/RestartButtonRed.png" class="img-responsive buttonsHv img-overlay buttonsHvB" onclick="restartGameLevel();">
+					<img src="img/MenuButtonRed.png" class="img-responsive buttonsHv img-overlay buttonsHvB" onclick="reloadToMenu();">
+				</div>
+				
+				<!--Return to menu button-->
+				<img id="backButton" src="img/BackButton.png" class="img-responsive buttonsHv img-overlay hidden" style="position: absolute;" onclick="returnToMenu();">
+			</div>
+		
+            <canvas id="canvas" width="800" height="550"></canvas>
             
             <!--for JQuery and Brine-->
             <script type="text/javascript" src="jquery-2.0.2.js"></script>

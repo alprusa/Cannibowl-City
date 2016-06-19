@@ -25,19 +25,24 @@ function makeText(obj){
             break;
         case "HungerDeath":
             textInfo[obj] = gameText(220, 230, "You Have Died of Hunger", "HungerDeath");
+            $("#deathMessage").text("You Have Died of Hunger");
             break;
         case "HealthDeath":
             textInfo[obj] = gameText(190, 230, "You Have Been Cannibalized", "HealthDeath"); //this one is not always true
+            $("#deathMessage").text("You Have Been Cannibalized");
             break;
         case "BossDeath":
             textInfo[obj] = gameText(260, 230, "You Were Defeated", "BossDeath");
+            $("#deathMessage").text("You Were Defeated");
             break;
         case "RestartNum":
             textInfo[obj] = gameText(320, 50, "Restarts: ", "RestartNum");
+            $("#restartVal").text("Restarts: " + remainingRestart);
             textInfo[obj].text += remainingRestart;
             break;
         case "SpecialDeath":
             textInfo[obj] = gameText(65, 230, "You've Been Killed by the Bones of Your Enemy", "SpecialDeath");
+            $("#deathMessage").text("You've Been Killed by the Bones of Your Enemy");
             break;
     }
     
